@@ -13,7 +13,7 @@ from ..core.clients import *
 if START_PIC:
     START_PIC = START_PIC
 else:
-    START_PIC = ""
+    START_PIC = "https://telegra.ph/file/6482940720892cb9a4479.jpg"
 
 
 @Client.on_message(filters.command(["start"], prefixes=HANDLER))
