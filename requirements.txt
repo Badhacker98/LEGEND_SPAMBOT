@@ -1,5 +1,4 @@
 heroku3
-SukhPB
 python-decouple
 pyrogram
 heroku3
@@ -8,3 +7,4 @@ tgcrypto
 async-eval==0.1.11
 python-dotenv[cli]
 python-dotenv
+git+https://github.com/badmunda98/pySukhPB
