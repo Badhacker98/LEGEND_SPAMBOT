@@ -1,0 +1,168 @@
+{
+    "name": "ʙᴀᴅsᴘᴀᴍʙᴏᴛ",
+    "description": "Sᴘᴀᴍᴍɪɴɢ Bᴏᴛ Mᴀᴅᴇ Bʏ Bᴀᴅ Mᴜɴᴅᴀ @ll_BAD_MUNDA_ll ",
+    "logo": "https://telegra.ph/file/57a3b5a2207620c55e070.jpg",
+    "keywords": [
+        "telegram",
+        "pyrogram",
+        "telegrambot",
+        "badboy",
+        "badmunda",
+        "Botspam"
+    ],
+    "repository": "https://github.com/Badhacker98/LEGEND_SPAMBOT",
+    "website": "https://t.me/ll_BAD_MUNDA_WORLD_ll",
+    "success_url": "https://t.me/ll_BAD_MUNDA_WORLD_ll",
+    "env": {       
+        "ENV": {
+            "description": "dont edit this",
+            "value": "ANYTHING"
+        },
+        "BOT_TOKEN": {
+            "description": "Use @BotFather. To Get BOT_TOKEN",
+            "value": ""
+        },
+        "BOT_TOKEN2": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN3": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN4": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false       
+        },
+        "BOT_TOKEN5": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false         
+        },
+        "BOT_TOKEN6": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false     
+        },
+        "BOT_TOKEN7": {
+            "description": "Use @BotFather. To Get BOT_TOKEN",
+            "value": "",
+            "required": false       
+        },
+        "BOT_TOKEN8": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false         
+        },
+        "BOT_TOKEN9": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false         
+        },
+        "BOT_TOKEN10": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false        
+        },
+        "BOT_TOKEN11": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN12": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN13": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN14": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false       
+        },
+        "BOT_TOKEN15": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false         
+        },
+        "BOT_TOKEN16": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false     
+        },
+        "BOT_TOKEN17": {
+            "description": "Use @BotFather. To Get BOT_TOKEN",
+            "value": "",
+            "required": false       
+        },
+        "BOT_TOKEN18": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false         
+        },
+        "BOT_TOKEN19": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false         
+        },
+        "BOT_TOKEN20": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false        
+        },
+        "BOT_TOKEN21": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN22": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN23": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN24": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "BOT_TOKEN25": {
+            "description": "Use @BotFather. To Get BOT_TOKEN.",
+            "value": "",
+            "required": false
+        },
+        "SUDO_USERS": {
+            "description": "Owner Id Get It From start @MissRose_bot , then do /id",
+            "value": ""        
+        },
+        "HANDLER": {
+            "description": "HANDLER",
+            "value": "/",
+            "required": false 
+        },
+        "HEROKU_API_KEY": {
+            "description": "Your Heroku api key to update your bot Get it from https://dashboard.heroku.com/account, then go down and click on reveal",
+            "value": ""
+        },
+        "HEROKU_APP_NAME": {
+            "description": "Your app name to Update your bot",
+            "value": ""         
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ]
+}
