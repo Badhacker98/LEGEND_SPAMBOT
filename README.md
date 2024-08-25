@@ -1,5 +1,3 @@
-![ɢɪᴛʜᴜʙ ᴄᴀʀᴅ](https://github-readme-stats.vercel.app/api/pin/?username=Badhacker98 &repo=LEGEND_SPAMBOT&theme=lite)
-
 [![ʙᴀᴅᴍᴜɴᴅᴀsᴘᴀᴍʙᴏᴛ](https://telegra.ph/file/c26f985c3f59004bc9927.jpg)](https://github.com/Badhacker98/LEGEND_SPAMBOT)
 
 <h1 align="center">
@@ -19,11 +17,6 @@
 
 -------
 
-## Status Of Bot 
-<p align="left">
-<a href="https://github.com/Badhacker98/LEGEND_SPAMBOT/network/members"><img src="https://img.shields.io/github/forks/LEGEND_SPAMBOT?label=Forks&logoColor=Black&style=social"></a><p align="left"><a href="https://github.com/Badhacker98/LEGEND_SPAMBOT/stargazers"><img src="https://img.shields.io/github/stars/LEGEND_SPAMBOT?logoColor=Blue&style=social"></a><p align="left"><a href="https://github.com/Badhacker98/LEGEND_SPAMBOT"></a><p align="left"><a href="https://github.com/Badhacker98/LEGEND_SPAMBOT?"></a>
-  
--------
 
 ## Telegram 🏪
 
@@ -74,8 +67,6 @@ Required Variable | Description
 
 -------
 ## Deploy On Heroku
-
-- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 - [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Badhacker98/LEGEND_SPAMBOT)
 
