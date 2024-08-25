@@ -1,0 +1,10 @@
+heroku3
+pySukhPB
+python-decouple
+pyrogram
+heroku3
+gitpython
+tgcrypto
+async-eval==0.1.11
+python-dotenv[cli]
+python-dotenv
