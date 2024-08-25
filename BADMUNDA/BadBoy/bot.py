@@ -16,7 +16,7 @@ from ..core.clients import *
 if PING_PIC:
     PING_PIC = PING_PIC
 else:
-    PING_PIC = "https://telegra.ph/file/57a3b5a2207620c55e070.jpg"
+    PING_PIC = "https://telegra.ph/file/c26f985c3f59004bc9927.jpg"
 
 
 @Client.on_message(filters.user(sudos) & filters.command(["ping"], prefixes=HANDLER))
