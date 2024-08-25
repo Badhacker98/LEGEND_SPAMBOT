@@ -1,7 +1,7 @@
 [![ʙᴀᴅᴍᴜɴᴅᴀsᴘᴀᴍʙᴏᴛ](https://telegra.ph/file/c26f985c3f59004bc9927.jpg)](https://github.com/Badhacker98/LEGEND_SPAMBOT)
 
 <h1 align="center">
-<b> 『ᴘʙ ʙᴏᴛ sᴘᴀᴍ』 </b>
+<b> 『ʙᴀᴅ ʙᴏᴛ sᴘᴀᴍ』 </b>
 </h1>
 
 <h6 align="center">
