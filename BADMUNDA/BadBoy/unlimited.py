@@ -1,6 +1,6 @@
 from random import choice
 
-from SukhPB.abuse import abuse as galia
+from pyLegendBS.abuse import abuse as galia
 from SukhPB.get_user import user_only
 from SukhPB.raid import RAID
 from pyrogram import Client, filters
