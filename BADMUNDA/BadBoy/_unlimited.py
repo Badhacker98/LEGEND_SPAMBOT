@@ -1,8 +1,8 @@
 from random import choice
 
 from LegendBS.abuse import abuse as galia
-from LegendBS.get_user import user_only
-from LegendBS.raid import RAID
+from SukhPB.get_user import user_only
+from SukhPB.raid import RAID
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -15,7 +15,7 @@ unlimited = False
 
 
 @Client.on_message(filters.user(sudos) & filters.command(["uspam"], prefixes=HANDLER))
-async def uspam(Legend: Client, e: Message):
+async def uspam(Badmunda: Client, e: Message):
     global unlimited
     unlimited = True
     msg = str(e.text[6:])
@@ -37,7 +37,7 @@ async def uspam(Legend: Client, e: Message):
                     await lol.send_message(e.chat.id, msg)
     if LOG_CHANNEL:
         try:
-            await Legend.send_message(
+            await Badmunda.send_message(
                 LOG_CHANNEL,
                 f"started Unlimited Spam By User: {e.from_user.id} \n\n Chat: {e.chat.id} \n Spam Message: {msg}",
             )
@@ -46,10 +46,10 @@ async def uspam(Legend: Client, e: Message):
 
 
 @Client.on_message(filters.user(sudos) & filters.command(["uraid"], prefixes=HANDLER))
-async def uraid(Legend: Client, e: Message):
+async def uraid(Badmunda: Client, e: Message):
     global unlimited
     unlimited = True
-    user = await user_only(Legend, e)
+    user = await user_only(Badmunda, e)
     mention = user.mention
     if e.reply_to_message:
         lmao = e.reply_to_message
@@ -70,7 +70,7 @@ async def uraid(Legend: Client, e: Message):
                     await lol.send_message(e.chat.id, raid_msg)
     if LOG_CHANNEL:
         try:
-            await Legend.send_message(
+            await Badmunda.send_message(
                 LOG_CHANNEL,
                 f"started Raid By User: {e.from_user.id} \n\n On User: {mention} \n Chat: {e.chat.id}",
             )
@@ -81,7 +81,7 @@ async def uraid(Legend: Client, e: Message):
 @Client.on_message(
     filters.user(sudos) & filters.command(["abuse", "gali"], prefixes=HANDLER)
 )
-async def abuse(Legend: Client, e: Message):
+async def abuse(Badmunda: Client, e: Message):
     global unlimited
     unlimited = True
     if e.reply_to_message:
@@ -101,7 +101,7 @@ async def abuse(Legend: Client, e: Message):
                     await lol.send_message(e.chat.id, f"{msg}")
     if LOG_CHANNEL:
         try:
-            await Legend.send_message(
+            await Badmunda.send_message(
                 LOG_CHANNEL,
                 f"started Raid By User: {e.from_user.id} \n\n On User: {mention} \n Chat: {e.chat.id}",
             )
@@ -119,7 +119,7 @@ async def stop(_, e: Message):
 @Client.on_message(
     filters.user(sudos) & filters.command(["echo", "repeat"], prefixes=HANDLER)
 )
-async def echo_(Legend: Client, message: Message):
+async def echo_(Badmunda: Client, message: Message):
     txt = " ".join(message.command[1:])
     if message.reply_to_message:
         msg = message.reply_to_message.text.markdown
@@ -133,8 +133,8 @@ async def echo_(Legend: Client, message: Message):
 
     try:
         await message.delete()
-        await Legend.send_message(message.chat.id, msg)
+        await Badmunda.send_message(message.chat.id, msg)
     except Exception as a:
-        await Legend.send_message(message.chat.id, msg)
+        await Badmunda.send_message(message.chat.id, msg)
         print(str(a))
-    
+          
