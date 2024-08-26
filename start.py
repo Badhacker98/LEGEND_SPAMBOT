@@ -62,7 +62,7 @@ if botspam.lower() in ["y", "yes"]:
         print(check)
         f.close()
         check_again()
-        if not len(lines) == 35:
+        if len(lines) !== 35:
             os.system("rm -rf .env")
             y = open(".env", "w")
             y.write(vars)
