@@ -66,7 +66,7 @@ USERS = []
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["prraid", "replyraid"], prefixes=HANDLER)
+    filters.user(sudos) & filters.command(["prraid", "preplyraid"], prefixes=HANDLER)
 )
 async def rpbiraid(Badmunda: Client, e: Message):
     global USERS
