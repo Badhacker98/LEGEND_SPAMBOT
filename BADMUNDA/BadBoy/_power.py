@@ -1,5 +1,6 @@
 from BADMUNDA.Config import *
 from ..core.clients import *
+from .. import sudos
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
