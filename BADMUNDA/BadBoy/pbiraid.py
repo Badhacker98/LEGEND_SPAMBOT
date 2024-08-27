@@ -11,7 +11,7 @@ from .. import sudos
 from ..core.clients import *
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["raid"], prefixes=HANDLER))
+@Client.on_message(filters.user(sudos) & filters.command(["praid"], prefixes=HANDLER))
 async def pbiraid(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}Pbiraid (count) (reply to anyone)\nUsage :- `{HANDLER}Pbiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}Pbiraid <count> <username>\nUsage :- `{HANDLER}Pbiraid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -66,7 +66,7 @@ USERS = []
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["rraid", "replyraid"], prefixes=HANDLER)
+    filters.user(sudos) & filters.command(["prraid", "replyraid"], prefixes=HANDLER)
 )
 async def rpbiraid(Badmunda: Client, e: Message):
     global USERS
@@ -110,7 +110,7 @@ async def rpbiraid(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["draid", "dreplyraid"], prefixes=HANDLER)
+    filters.user(sudos) & filters.command(["draid", "dpraid", "dreplyraid"], prefixes=HANDLER)
 )
 async def dpbiraid(Badmunda: Client, e: Message):
     global USERS
