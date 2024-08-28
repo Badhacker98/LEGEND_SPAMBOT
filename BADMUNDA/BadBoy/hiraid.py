@@ -2,7 +2,7 @@
 import asyncio
 from random import choice
 
-from SukhPB.hiraid import HIRAID
+from Sukh.hiraid import HIRAID
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
