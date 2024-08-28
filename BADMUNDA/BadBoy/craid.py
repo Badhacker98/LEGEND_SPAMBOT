@@ -1,7 +1,7 @@
 import asyncio
 from random import choice
 
-from SukhPB.craid import CRAID
+from SukhPB._craid import CRAID
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
