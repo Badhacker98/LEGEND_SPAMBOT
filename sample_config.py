@@ -45,7 +45,7 @@ PING_PIC = getenv("PING_PIC", None)
 
 START_PIC = getenv("START_PIC", None)
 
-
+OWNER_ID = int(getenv("OWNER_ID", default="7009601543"))
 HELP_MSG = getenv("HELP_MSG", None)
 HELP_PIC = getenv("HELP_PIC", "https://telegra.ph/file/c26f985c3f59004bc9927.jpg")
 LOG_CHANNEL = getenv("LOG_CHANNEL", None)
