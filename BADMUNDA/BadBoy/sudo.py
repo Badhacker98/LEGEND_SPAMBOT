@@ -7,7 +7,7 @@ from telethon import events
 from datetime import datetime
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["addsudo"], prefixes=HANDLER))
+@Client.on_message(filters.command(["addsudo"], prefixes=HANDLER))
 async def addsudo(_, e: Message):
     if event.sender_id == OWNER_ID:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
