@@ -1,7 +1,7 @@
 import sys
 from BADMUNDA.Config import *
 import heroku3
-from pyrogram import enums
+from pyrogram import Client, filters, enums
 from os import execl, getenv
 from telethon import events
 from datetime import datetime
