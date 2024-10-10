@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 @Client.on_message(filters.command(["addsudo"], prefixes=HANDLER))
-async def addsudo(_, e: Message):
+async def sudo(Badmunda: Client, message: Message):
     if event.sender_id == OWNER_ID:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
         sudousers = getenv("SUDO_USERS", default=None)
