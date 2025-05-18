@@ -1,6 +1,7 @@
 import sys
 from BADMUNDA.Config import *
 import heroku3
+from .. import sudos
 from pyrogram import Client, filters, enums
 from os import execl, getenv
 from telethon import events
