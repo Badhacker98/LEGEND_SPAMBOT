@@ -103,7 +103,11 @@ Sᴘᴀᴍ Tʜᴇ Cʜᴀᴛ Wɪᴛʜ Rᴀɪ
 
 🧪 ᴜsᴀɢᴇ :
 🔸 {HANDLER}raid (counts) (reply to anyone)
-🔸 {HANDLER}raid (counts) (username)"""
+🔸 {HANDLER}raid (counts) (username)
+🔸 {HANDLER}praid (counts) (reply to anyone)
+🔸 {HANDLER}praid (counts) (username)
+🔸 {HANDLER}hraid (counts) (reply to anyone)
+🔸 {HANDLER}hraid (counts) (username)"""
 
 raid_help2 = f"""📂 ɪɴᴛʀᴏ :
 Sᴛᴀʀᴛ Tʜᴇ Rᴀɪᴅ ɪɴ Tʜᴇ Cʜᴀᴛ.
