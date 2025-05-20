@@ -11,7 +11,7 @@ from .. import sudos
 from ..core.clients import *
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["Pbiraid"], prefixes=HANDLER))
+@Client.on_message(filters.user(sudos) & filters.command(["praid"], prefixes=HANDLER))
 async def Pbiraid(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}Pbiraid (count) (reply to anyone)\nUsage :- `{HANDLER}Pbiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}Pbiraid <count> <username>\nUsage :- `{HANDLER}Pbiraid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -60,3 +60,5 @@ async def Pbiraid(Badmunda: Client, e: Message):
             )
         except Exception as a:
             print(a)
+
+USERS = []
