@@ -35,7 +35,7 @@ BOT_TOKEN23 = config("BOT_TOKEN23", default=None)
 BOT_TOKEN24 = config("BOT_TOKEN24", default=None)
 BOT_TOKEN25 = config("BOT_TOKEN25", default=None)
 
-SUDO_USER = list(map(int, getenv("SUDO_USERS", "7762101994").split()))
+SUDO_USER = list(map(int, getenv("SUDO_USER", "7762101994").split()))
 
 START_MESSAGE = getenv("START_MESSAGE", None)
 
