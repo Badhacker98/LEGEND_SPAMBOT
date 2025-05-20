@@ -50,13 +50,13 @@ async def Pbiraid(Badmunda: Client, e: Message):
         for i in range(1, 26):
             lol = globals()[f"Client{i}"]
             if lol is not None:
-                await lol.send_message(chat.id, f"{user.mention} {raid}")
+                await lol.send_message(chat.id, f"{user.mention} {Pbiraid}")
                 await asyncio.sleep(0.3)
     if LOG_CHANNEL:
         try:
             await Badmunda.send_message(
                 LOG_CHANNEL,
-                f"started Raid By User: {e.from_user.id} \n\n On User: {mention} \n Chat: {e.chat.id} \n Counts: {counts}",
+                f"started Pbiraid By User: {e.from_user.id} \n\n On User: {mention} \n Chat: {e.chat.id} \n Counts: {counts}",
             )
         except Exception as a:
             print(a)
