@@ -1,6 +1,6 @@
 from pyrogram import filters, Client
 from pyrogram.types import Message
-from .. import SUDO_USER
+from .. import SUDO_USERS
 from BADMUNDA.Config import *
 
 
