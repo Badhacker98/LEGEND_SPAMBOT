@@ -9,20 +9,19 @@ version = "v2"
 group_username = "@PBX_CHAT"
 start_time = time.time()
 
-
 # Sudo Users
-sudos = []
+SUDO_USERS = []
 # full debugging
-if SUDO_USERS:
+if SUDO_USERS_CONFIG:  # <-- dhyan rahe, agar aapka Config me SUDO_USERS_CONFIG naam ka variable hai
     try:
-        sudouser = SUDO_USERS
+        sudouser = SUDO_USERS_CONFIG
         print(sudouser)
         _list = []
         for x in sudouser:
             _list.append(int(x))
-        sudos = _list
+        SUDO_USERS = _list
     except Exception as e:
-        sudos = SUDO_USERS
+        SUDO_USERS = SUDO_USERS_CONFIG
         print(e)
 else:
     print("sudo user")
