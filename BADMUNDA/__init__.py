@@ -10,5 +10,5 @@ group_username = "@PBX_CHAT"
 start_time = time.time()
 
 # Sudo Users
-SUDO_USERZ = SUDO_USER
+SUDO_USERS = SUDO_USER
 SUDO_USER.append(OWNER_ID)
