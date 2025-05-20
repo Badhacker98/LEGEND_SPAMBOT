@@ -1,47 +1,72 @@
-import sys
+from pyrogram import filters, Client
+from pyrogram.types import Message
+from .. import sudos as SUDO_USER
 from BADMUNDA.Config import *
-import heroku3
-from .. import sudos
-from pyrogram import Client, filters, enums
-from os import execl, getenv
-from telethon import events
-from datetime import datetime
-from pyrogram.types import InlineKeyboardMarkup, Message
 
 
 @Client.on_message(filters.command(["addsudo"], prefixes=HANDLER))
-async def _sudo(Badmunda: Client, message: Message):
-    if message.from_user.id == OWNER_ID:
-        Heroku = heroku3.from_key(HEROKU_API_KEY)
-        sudousers = getenv("SUDO_USERS", default=None)
-
-        ok = await message.reply(f"✦ ᴀᴅᴅɪɴɢ ᴜꜱᴇʀ ᴀꜱ ꜱᴜᴅᴏ...")
-        target = ""
-        if HEROKU_APP_NAME is not None:
-            app = Heroku.app(HEROKU_APP_NAME)
-        else:
-            await ok.edit("✦ `[HEROKU] ➥" "\n✦ Please Setup Your` **HEROKU_APP_NAME**")
-            return
-        heroku_var = app.config()
-        try:
-            reply_msg = message.reply_to_message
-            if reply_msg is None:
-                await ok.edit("✦ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜꜱᴇʀ.")
+async def addsudo(client: Client, message: Message):
+    try:
+        if not message.reply_to_message:
+            if len(message.command) != 2:
+                await message.reply_text("Reply to a user's message or give username/user_id.")
                 return
-            target = reply_msg.from_user.id
-        except Exception as e:
-            await ok.edit("✦ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜꜱᴇʀ.")
-            return
+            user = message.text.split(None, 1)[1]
+            if "@" in user:
+                user = user.replace("@", "")
+            user = await client.get_users(user)
+            if user.id in SUDO_USER:
+                await message.reply_text("{0} is already a sudo user.".format(user.mention))
+                return
+            SUDO_USER.append(user.id)
+            await message.reply_text("Added **{0}** to Sudo Users.".format(user.mention))
 
-        if str(target) in sudousers:
-            await ok.edit(f"✦ ᴛʜɪꜱ ᴜꜱᴇʀ ɪꜱ ᴀʟʀᴇᴀᴅʏ ᴀ ꜱᴜᴅᴏ ᴜꜱᴇʀ !!")
-        else:
-            if len(sudousers) > 0:
-                newsudo = f"{sudousers} {target}"
-            else:
-                newsudo = f"{target}"
-            await ok.edit(f"✦ **ɴᴇᴡ ꜱᴜᴅᴏ ᴜꜱᴇʀ** ➥ `{target}`")
-            heroku_var["SUDO_USERS"] = newsudo    
-    
-    elif message.from_user.id in SUDO_USERS:
-        await message.reply("✦ ꜱᴏʀʀʏ, ᴏɴʟʏ ᴏᴡɴᴇʀ ᴄᴀɴ ᴀᴄᴄᴇꜱꜱ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ.")
+        if message.reply_to_message.from_user.id in SUDO_USER:
+            await message.reply_text("{0} is already a sudo user.".format(message.reply_to_message.from_user.mention))
+            return
+        SUDO_USER.append(message.reply_to_message.from_user.id)
+        await message.reply_text("Added **{0}** to Sudo Users.".format(message.reply_to_message.from_user.mention))
+    except Exception as e:
+        await message.reply_text(f"**ERROR:** `{e}`")
+        return
+
+@Client.on_message(filters.command(["rmsudo"], prefixes=HANDLER))
+async def rmsudo(client: Client, message: Message):
+    try:
+        if not message.reply_to_message:
+            if len(message.command) != 2:
+                await message.reply_text("Reply to a user's message or give username/user_id.")
+                return
+            user = message.text.split(None, 1)[1]
+            if "@" in user:
+                user = user.replace("@", "")
+            user = await client.get_users(user)
+            if user.id not in SUDO_USER:
+                await message.reply_text("**{0}** is not a part of Bot's Sudo.".format(user.mention))
+                return 
+            SUDO_USER.remove(user.id)
+            await message.reply_text("Removed **{0}** from Bot's Sudo User".format(user.mention))
+        user_id = message.reply_to_message.from_user.id
+        if user_id not in SUDO_USER:
+            return await message.reply_text("**{0}** is not a part of Bot's Sudo.".format(message.reply_to_message.from_user.mention))
+        SUDO_USER.remove(user_id)
+        await message.reply_text("Removed **{0}** from Bot's Sudo User".format(message.reply_to_message.from_user.mention))
+    except Exception as e:
+        await message.reply_text(f"**ERROR:** `{e}`")
+        return
+
+
+@Client.on_message(filters.command(["sudolist"], prefixes=HANDLER))
+async def sudolist(client: Client, message: Message):
+    users = SUDO_USER
+    ex = await message.edit_text("`Processing...`")
+    if not users:
+        await ex.edit("No Users have been set yet")
+        return
+    sudo_list = "**Sudo Users:**\n"
+    count = 0
+    for i in users:
+        count += 1
+        sudo_list += f"**{count} -** `{i}`\n"
+    await ex.edit(sudo_list)
+    return 
