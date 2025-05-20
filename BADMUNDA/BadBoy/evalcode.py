@@ -7,7 +7,7 @@ from pyrogram.types import Message
 
 from BADMUNDA.Config import *
 
-from .. import sudos
+from .. import SUDO_USERS as sudos
 
 
 @Client.on_message(filters.user(sudos) & filters.command(["eval"], prefixes=HANDLER))
