@@ -5,13 +5,16 @@ import time
 
 from SukhPB.get_time import get_time
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from BADMUNDA import start_time
 from BADMUNDA.Config import *
 
 from .. import sudos
 from ..core.clients import *
+
+SUPPORT_CHAT_URL = "https://t.me/PBX_CHAT"
+UPDATE_CHANNEL_URL = "https://t.me/HEROKUBIN_01"
 
 if PING_PIC:
     PING_PIC = PING_PIC
@@ -23,20 +26,52 @@ else:
 async def ping(_, e: Message):
     start = datetime.datetime.now()
     uptime = get_time((time.time() - start_time))
+    user_mention = f"[{e.from_user.first_name}](tg://user?id={e.from_user.id})" if e.from_user else "User"
     a = await e.reply_text("ᴘᴏɴɢ 👻")
     end = datetime.datetime.now()
     ms = (end - start).microseconds / 1000
+
+    ping_temp = (
+        f"📌 ᴘɪɴɢ ᴘᴏɴɢ \n\n"
+        f"🧪 ᴘɪɴɢ: {ms} ms\n"
+        f"🌡️ ᴜᴘᴛɪᴍᴇ: {uptime}\n"
+        f"👻 ᴏᴡɴᴇʀ: {user_mention}"
+    )
+
+    # Inline Buttons
+    buttons = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("✯ sᴜᴘᴘᴏʀᴛ ✯", url=SUPPORT_CHAT_URL),
+                InlineKeyboardButton("✯ ᴜᴘᴅᴀᴛᴇ ✯", url=UPDATE_CHANNEL_URL)
+            ]
+        ]
+    )
+
     await a.delete()
-    ping_temp = f"📌 ᴘɪɴɢ ᴘᴏɴɢ \n\n🧪 ᴘɪɴɢ: {ms}\n🌡️ᴜᴘᴛɪᴍᴇ: {uptime}"
     for i in range(1, 26):
-        lol = globals()[f"Client{i}"]
+        lol = globals().get(f"Client{i}")
         if lol is not None:
             if ".jpg" in PING_PIC or ".png" in PING_PIC:
-                await lol.send_photo(e.chat.id, PING_PIC, caption=ping_temp)
+                await lol.send_photo(
+                    e.chat.id,
+                    PING_PIC,
+                    caption=ping_temp,
+                    reply_markup=buttons,
+                )
             elif ".mp4" in PING_PIC.lower():
-                await lol.send_video(e.chat.id, PING_PIC, caption=ping_temp)
+                await lol.send_video(
+                    e.chat.id,
+                    PING_PIC,
+                    caption=ping_temp,
+                    reply_markup=buttons,
+                )
             else:
-                await lol.send_message(e.chat.id, ping_temp)
+                await lol.send_message(
+                    e.chat.id,
+                    ping_temp,
+                    reply_markup=buttons,
+                )
 
 
 @Client.on_message(
@@ -54,4 +89,3 @@ async def restarter(Badmunda: Client, message: Message):
     args = [sys.executable, "-m", "BADMUNDA"]
     os.execl(sys.executable, *args)
     quit()
-      
