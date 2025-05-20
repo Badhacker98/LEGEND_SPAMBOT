@@ -3,7 +3,6 @@ from pyrogram.types import Message
 from .. import SUDO_USERS
 from BADMUNDA.Config import *
 
-
 @Client.on_message(filters.command(["addsudo"], prefixes=HANDLER))
 async def addsudo(client: Client, message: Message):
     try:
@@ -15,16 +14,16 @@ async def addsudo(client: Client, message: Message):
             if "@" in user:
                 user = user.replace("@", "")
             user = await client.get_users(user)
-            if user.id in SUDO_USER:
+            if user.id in SUDO_USERS:
                 await message.reply_text("{0} is already a sudo user.".format(user.mention))
                 return
-            SUDO_USER.append(user.id)
+            SUDO_USERS.append(user.id)
             await message.reply_text("Added **{0}** to Sudo Users.".format(user.mention))
 
-        if message.reply_to_message.from_user.id in SUDO_USER:
+        if message.reply_to_message.from_user.id in SUDO_USERS:
             await message.reply_text("{0} is already a sudo user.".format(message.reply_to_message.from_user.mention))
             return
-        SUDO_USER.append(message.reply_to_message.from_user.id)
+        SUDO_USERS.append(message.reply_to_message.from_user.id)
         await message.reply_text("Added **{0}** to Sudo Users.".format(message.reply_to_message.from_user.mention))
     except Exception as e:
         await message.reply_text(f"**ERROR:** `{e}`")
@@ -41,24 +40,23 @@ async def rmsudo(client: Client, message: Message):
             if "@" in user:
                 user = user.replace("@", "")
             user = await client.get_users(user)
-            if user.id not in SUDO_USER:
+            if user.id not in SUDO_USERS:
                 await message.reply_text("**{0}** is not a part of Bot's Sudo.".format(user.mention))
                 return 
-            SUDO_USER.remove(user.id)
+            SUDO_USERS.remove(user.id)
             await message.reply_text("Removed **{0}** from Bot's Sudo User".format(user.mention))
         user_id = message.reply_to_message.from_user.id
-        if user_id not in SUDO_USER:
+        if user_id not in SUDO_USERS:
             return await message.reply_text("**{0}** is not a part of Bot's Sudo.".format(message.reply_to_message.from_user.mention))
-        SUDO_USER.remove(user_id)
+        SUDO_USERS.remove(user_id)
         await message.reply_text("Removed **{0}** from Bot's Sudo User".format(message.reply_to_message.from_user.mention))
     except Exception as e:
         await message.reply_text(f"**ERROR:** `{e}`")
         return
 
-
 @Client.on_message(filters.command(["sudolist"], prefixes=HANDLER))
 async def sudolist(client: Client, message: Message):
-    users = SUDO_USER
+    users = SUDO_USERS
     ex = await message.edit_text("`Processing...`")
     if not users:
         await ex.edit("No Users have been set yet")
