@@ -10,7 +10,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from BADMUNDA import start_time
 from BADMUNDA.Config import *
 
-from .. import sudos
+from .. import SUDO_USERS as sudos
 from ..core.clients import *
 
 SUPPORT_CHAT_URL = "https://t.me/PBX_CHAT"
