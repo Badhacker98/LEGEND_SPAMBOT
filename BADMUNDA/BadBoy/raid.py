@@ -65,7 +65,7 @@ async def raid(Badmunda: Client, e: Message):
 
 USERS = []
 
-@Client.on_message(filters.user(sudos) & filters.command(["praid"], prefixes=HANDLER))
+@Client.on_message(filters.user(sudos) & filters.command(["pbiraid"], prefixes=HANDLER))
 async def Pbiraid(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}pbiraid (count) (reply to anyone)\nUsage :- `{HANDLER}pbiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}pbiraid <count> <username>\nUsage :- `{HANDLER}pbiraid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -118,7 +118,7 @@ async def Pbiraid(Badmunda: Client, e: Message):
 USERS = []
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["praid"], prefixes=HANDLER))
+@Client.on_message(filters.user(sudos) & filters.command(["hiraid"], prefixes=HANDLER))
 async def Hiraid(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}hiraid (count) (reply to anyone)\nUsage :- `{HANDLER}hiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}hiraid <count> <username>\nUsage :- `{HANDLER}hiraid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
