@@ -67,7 +67,7 @@ USERS = []
 
 @Client.on_message(filters.user(sudos) & filters.command(["praid"], prefixes=HANDLER))
 async def Pbiraid(Badmunda: Client, e: Message):
-    usage = f"Command :- {HANDLER}Pbiraid (count) (reply to anyone)\nUsage :- `{HANDLER}Pbiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}Pbiraid <count> <username>\nUsage :- `{HANDLER}Pbiraid 3 @Hekeke`"
+    usage = f"Command :- {HANDLER}pbiraid (count) (reply to anyone)\nUsage :- `{HANDLER}pbiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}pbiraid <count> <username>\nUsage :- `{HANDLER}pbiraid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
     chat = e.chat
     try:
@@ -116,6 +116,60 @@ async def Pbiraid(Badmunda: Client, e: Message):
             print(a)
 
 USERS = []
+
+
+@Client.on_message(filters.user(sudos) & filters.command(["praid"], prefixes=HANDLER))
+async def Hiraid(Badmunda: Client, e: Message):
+    usage = f"Command :- {HANDLER}hiraid (count) (reply to anyone)\nUsage :- `{HANDLER}hiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}hiraid <count> <username>\nUsage :- `{HANDLER}hiraid 3 @Hekeke`"
+    lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
+    chat = e.chat
+    try:
+        counts = int(lol[0])
+    except ValueError:
+        return await e.reply_text(usage)
+    if len(lol) == 2:
+        if not counts:
+            await e.reply_text(
+                f"Gib Hiraid Counts or use `{HANDLER}.uHiraid` for Unlimited Hiraid!"
+            )
+            return
+        owo = lol[1]
+        if not owo:
+            await e.reply_text(
+                "you need to specify an user! Reply to any user or gime id/username"
+            )
+            return
+        try:
+            user = await Badmunda.get_users(lol[1])
+        except:
+            await e.reply_text("**Error:** User not found!")
+            return
+    elif e.reply_to_message:
+        try:
+            user = await Badmunda.get_users(e.reply_to_message.from_user.id)
+        except:
+            user = e.reply_to_message.from_user
+    else:
+        await e.reply_text(usage)
+        return
+    for _ in range(counts):
+        Hiraid = choice(HIRAID)
+        for i in range(1, 26):
+            lol = globals()[f"Client{i}"]
+            if lol is not None:
+                await lol.send_message(chat.id, f"{user.mention} {Hiraid}")
+                await asyncio.sleep(0.3)
+    if LOG_CHANNEL:
+        try:
+            await Badmunda.send_message(
+                LOG_CHANNEL,
+                f"started Hiraid By User: {e.from_user.id} \n\n On User: {mention} \n Chat: {e.chat.id} \n Counts: {counts}",
+            )
+        except Exception as a:
+            print(a)
+
+USERS = []
+
 
 
 
@@ -235,4 +289,5 @@ async def checkraid(Badmunda: Client, msg: Message):
     global USERS
     if int(msg.from_user.id) in USERS:
         await msg.reply_text(choice(RRAID))
+          
           
