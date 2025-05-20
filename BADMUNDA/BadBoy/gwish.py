@@ -3,7 +3,7 @@ from pyrogram.types import *
 
 from BADMUNDA.Config import *
 
-from .. import sudos
+from .. import SUDO_USERS as sudos
 from ..core.clients import *
 
 wish = False
