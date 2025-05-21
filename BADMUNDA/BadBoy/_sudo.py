@@ -2,6 +2,9 @@ import os
 import sys
 import heroku3
 from datetime import datetime
+from ..core.clients import *
+from pyrogram import Client, filters
+from pyrogram.types import *
 from pyrogram import Client, filters, enums
 from BADMUNDA.Config import HEROKU_API_KEY, HEROKU_APP_NAME, HANDLER, OWNER_ID, SUDO_USERS
 from BADMUNDA.Config import *
