@@ -8,11 +8,11 @@ from pyrogram.types import Message
 
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 from ..core.clients import *
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["raid"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["raid"], prefixes=HANDLER))
 async def raid(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}raid (count) (reply to anyone)\nUsage :- `{HANDLER}raid 3 <reply to anyone>`\n\nCommand :- {HANDLER}raid <count> <username>\nUsage :- `{HANDLER}raid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -65,7 +65,7 @@ async def raid(Badmunda: Client, e: Message):
 
 USERS = []
 
-@Client.on_message(filters.user(sudos) & filters.command(["pbiraid"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["pbiraid"], prefixes=HANDLER))
 async def Pbiraid(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}pbiraid (count) (reply to anyone)\nUsage :- `{HANDLER}pbiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}pbiraid <count> <username>\nUsage :- `{HANDLER}pbiraid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -118,7 +118,7 @@ async def Pbiraid(Badmunda: Client, e: Message):
 USERS = []
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["hiraid"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["hiraid"], prefixes=HANDLER))
 async def Hiraid(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}hiraid (count) (reply to anyone)\nUsage :- `{HANDLER}hiraid 3 <reply to anyone>`\n\nCommand :- {HANDLER}hiraid <count> <username>\nUsage :- `{HANDLER}hiraid 3 @Hekeke`"
     lol = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -174,7 +174,7 @@ USERS = []
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["rraid", "replyraid"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["rraid", "replyraid"], prefixes=HANDLER)
 )
 async def rraid(Badmunda: Client, e: Message):
     global USERS
@@ -218,7 +218,7 @@ async def rraid(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["draid", "dreplyraid"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["draid", "dreplyraid"], prefixes=HANDLER)
 )
 async def draid(Badmunda: Client, e: Message):
     global USERS
@@ -266,7 +266,7 @@ async def draid(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["rlist", "raidlist"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["rlist", "raidlist"], prefixes=HANDLER)
 )
 async def rlist(Badmunda: Client, e: Message):
     global USERS
