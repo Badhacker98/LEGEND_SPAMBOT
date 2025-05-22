@@ -8,12 +8,12 @@ from pyrogram.types import *
 
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 from ..core.clients import *
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["spam", "bigspam"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["spam", "bigspam"], prefixes=HANDLER)
 )
 async def spam(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}spam (count) (text)\nExample :- `{HANDLER}spam 5 SpamBot OP`\n\n{HANDLER}bigspam (count) (text)\nExample :- `{HANDLER}bigspam 103 Pb Spam Bot`"
@@ -62,7 +62,7 @@ async def spam(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["dspam", "delayspam"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["dspam", "delayspam"], prefixes=HANDLER)
 )
 async def delayspam(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}dspam (count) (sleeptime) (text)\nExample :- `{HANDLER}dspam 25 8 PbBot`"
@@ -109,7 +109,7 @@ async def delayspam(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["pspam", "pornspam"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["pspam", "pornspam"], prefixes=HANDLER)
 )
 async def _pornspam(Badmunda: Client, e: Message):
     usage = f"Command :- {HANDLER}pspam (count)\n\nExample :- `{HANDLER}pspam 23`"
@@ -175,7 +175,7 @@ async def _pornspam(Badmunda: Client, e: Message):
             print(a)
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["hang"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["hang"], prefixes=HANDLER))
 async def _hangchat(Badmunda: Client, e: Message):
     usage = f"Command : {HANDLER}hang (count)"
     try:
