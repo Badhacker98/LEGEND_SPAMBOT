@@ -4,6 +4,7 @@ telethon==1.33.1
 python-decouple
 pyrogram
 heroku3
+motor
 gitpython
 tgcrypto
 async-eval==0.1.11
