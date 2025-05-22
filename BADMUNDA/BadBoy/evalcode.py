@@ -7,10 +7,10 @@ from pyrogram.types import Message
 
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["eval"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["eval"], prefixes=HANDLER))
 async def eval(Badmunda: Client, message: Message):
     cmd = message.text[6:]
     if message.reply_to_message:
@@ -30,7 +30,7 @@ async def eval(Badmunda: Client, message: Message):
     await message.reply_text(f"Output: {output}")
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["exec"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["exec"], prefixes=HANDLER))
 async def exec(Badmunda: Client, message: Message):
     cmd = message.text[6:]
     if message.reply_to_message:
@@ -66,4 +66,5 @@ async def exec(Badmunda: Client, message: Message):
             f"<b>Result</b>:\n"
             f"<code>{result}</code>"
         )
+      
       
