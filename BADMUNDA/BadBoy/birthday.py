@@ -6,14 +6,14 @@ from pyrogram.types import *
 
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 from ..core.clients import *
 
 bd = False
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["birthday"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["birthday"], prefixes=HANDLER)
 )
 async def brthdaycmd(Badmunda: Client, e: Message):
     usage = f"Command: {HANDLER}birthday -u \nCommand:{HANDLER}birthday -u (reply to anyone)\nCommand: {HANDLER}birthday (count) \nCommand: {HANDLER}birthday (count) (reply to anyone)"
@@ -75,9 +75,10 @@ async def brthdaycmd(Badmunda: Client, e: Message):
             print(a)
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["stopbd"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["stopbd"], prefixes=HANDLER))
 async def stopbd(_, e: Message):
     global bd
     bd = False
     await e.reply_text("Stopped Unlimited Wish Happy Birthday")
+          
           
