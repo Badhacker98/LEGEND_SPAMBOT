@@ -3,7 +3,7 @@ from os import getenv
 
 from decouple import config
 
-from BADMUNDA import BAD
+from SukhPB.Bad import BAD
 
 APP_ID = getenv("APP_ID", "25742938")
 
