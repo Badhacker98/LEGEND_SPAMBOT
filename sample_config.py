@@ -1,15 +1,13 @@
-import os
 from os import getenv
 
 from decouple import config
-
-from SukhPB.Bad import BAD
 
 APP_ID = getenv("APP_ID", "25742938")
 
 API_HASH = getenv("API_HASH", "b35b715fe8dc0a58e8048988286fc5b6")
 
-MONGO_URL = getenv("MONGO_URL", "mongodb+srv://BADMUNDA:BADMYDAD@badhacker.i5nw9na.mongodb.net/")
+HEROKU_APP_NAME = config("HEROKU_APP_NAME", None)
+HEROKU_API_KEY = config("HEROKU_API_KEY", None)
 
 BOT_TOKEN = config("BOT_TOKEN", default=None)
 BOT_TOKEN2 = config("BOT_TOKEN2", default=None)
@@ -37,6 +35,8 @@ BOT_TOKEN23 = config("BOT_TOKEN23", default=None)
 BOT_TOKEN24 = config("BOT_TOKEN24", default=None)
 BOT_TOKEN25 = config("BOT_TOKEN25", default=None)
 
+SUDO_USER = list(map(int, getenv("SUDO_USER", "7762101994").split()))
+
 START_MESSAGE = getenv("START_MESSAGE", None)
 
 PING_PIC = getenv("PING_PIC", None)
@@ -49,5 +49,3 @@ HELP_PIC = getenv("HELP_PIC", "https://telegra.ph/file/c26f985c3f59004bc9927.jpg
 LOG_CHANNEL = getenv("LOG_CHANNEL", None)
 
 HANDLER = getenv("HANDLER", "/")
-
-SUDOERS = list(map(int, getenv("SUDOERS", "7009601543").split()))
