@@ -1,41 +1,67 @@
-import os
-import sys
-import heroku3
-from datetime import datetime
-from ..core.clients import *
+import pymongo
 from pyrogram import Client, filters
-from pyrogram.types import *
-from pyrogram import Client, filters, enums
-from BADMUNDA.Config import HEROKU_API_KEY, HEROKU_APP_NAME, HANDLER, OWNER_ID, SUDO_USERS
-from BADMUNDA.Config import *
+from BADMUNDA.Config import HANDLER, OWNER_ID, MONGO_DB
+
+# MongoDB setup
+mongo_client = pymongo.MongoClient(MONGO_DB)
+db = mongo_client["legend_spambot_db"]
+sudo_col = db["sudo_users"]
+
+# Helper: Get sudo users from DB, fallback to OWNER_ID if empty
+def get_sudo_users():
+    doc = sudo_col.find_one({"_id": "sudo_list"})
+    if doc and "users" in doc and doc["users"]:
+        return doc["users"]
+    return [str(OWNER_ID)]
+
+# Helper: Save sudo users to DB
+def save_sudo_users(sudo_list):
+    sudo_col.update_one({"_id": "sudo_list"}, {"$set": {"users": sudo_list}}, upsert=True)
 
 @Client.on_message(filters.command("addsudo", prefixes=HANDLER) & filters.private)
 async def addsudo(client, message):
     if message.from_user.id != OWNER_ID:
-        return await message.reply("✦ ꜱᴏʀʀʏ, ᴏɴʟʏ ᴏᴡɴᴇʀ ᴄᴀɴ ᴀᴄᴄᴇꜱꜱ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ.")
+        return await message.reply("✦ ɴᴏ ᴘᴇʀᴍɪssɪᴏɴ: ᴏɴʟʏ ᴏᴡɴᴇʀ ᴄᴀɴ ᴀᴄᴄᴇss ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ.")
 
     if not message.reply_to_message or not message.reply_to_message.from_user:
-        return await message.reply("✦ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜꜱᴇʀ.")
+        return await message.reply("✦ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ.")
 
-    target_id = message.reply_to_message.from_user.id
-    sudo_env = os.getenv("SUDO_USERS", "7694539822")
+    target_id = str(message.reply_to_message.from_user.id)
+    sudo_list = get_sudo_users()
 
-    if str(target_id) in sudo_env.split():
-        return await message.reply("✦ ᴛʜɪꜱ ᴜꜱᴇʀ ɪꜱ ᴀʟʀᴇᴀᴅʏ ᴀ ꜱᴜᴅᴏ ᴜꜱᴇʀ !!")
+    if target_id in sudo_list:
+        return await message.reply("✦ ᴛʜɪs ᴜsᴇʀ ɪs ᴀʟʀᴇᴀᴅʏ ᴀ sᴜᴅᴏ ᴜsᴇʀ !!")
 
-    msg = await message.reply("✦ ᴀᴅᴅɪɴɢ ᴜꜱᴇʀ ᴀꜱ ꜱᴜᴅᴏ...")
+    sudo_list.append(target_id)
+    save_sudo_users(sudo_list)
 
-    if HEROKU_APP_NAME is None:
-        return await msg.edit("✦ `[HEROKU] ➥` Please set **HEROKU_APP_NAME** in your config.")
+    await message.reply(f"✦ **ɴᴇᴡ sᴜᴅᴏ ᴜsᴇʀ** ➥ `{target_id}` ᴀᴅᴅᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
 
-    try:
-        heroku = heroku3.from_key(HEROKU_API_KEY)
-        app = heroku.app(HEROKU_APP_NAME)
-        heroku_vars = app.config()
-    except Exception as e:
-        return await msg.edit(f"✦ Failed to connect to Heroku:\n`{e}`")
+@Client.on_message(filters.command("rmsudo", prefixes=HANDLER) & filters.private)
+async def rmsudo(client, message):
+    if message.from_user.id != OWNER_ID:
+        return await message.reply("✦ ɴᴏ ᴘᴇʀᴍɪssɪᴏɴ: ᴏɴʟʏ ᴏᴡɴᴇʀ ᴄᴀɴ ᴀᴄᴄᴇss ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ.")
 
-    updated_sudo = f"{sudo_env} {target_id}".strip()
-    heroku_vars["SUDO_USERS"] = updated_sudo
+    if not message.reply_to_message or not message.reply_to_message.from_user:
+        return await message.reply("✦ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ.")
 
-    await msg.edit(f"✦ **ɴᴇᴡ ꜱᴜᴅᴏ ᴜꜱᴇʀ** ➥ `{target_id}`")
+    target_id = str(message.reply_to_message.from_user.id)
+    sudo_list = get_sudo_users()
+
+    if target_id not in sudo_list:
+        return await message.reply("✦ ᴛʜɪs ᴜsᴇʀ ɪs ɴᴏᴛ ᴀ sᴜᴅᴏ ᴜsᴇʀ !!")
+    if target_id == str(OWNER_ID):
+        return await message.reply("✦ ᴏᴡɴᴇʀ ᴋᴏ sᴜᴅᴏ sᴇ ʜᴀᴛᴀ ɴᴀʜɪ sᴀᴋᴛᴇ!")
+
+    sudo_list.remove(target_id)
+    save_sudo_users(sudo_list)
+
+    await message.reply(f"✦ **sᴜᴅᴏ ᴜsᴇʀ** ➥ `{target_id}` ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
+
+@Client.on_message(filters.command("sudolist", prefixes=HANDLER) & filters.private)
+async def sudolist(client, message):
+    sudo_list = get_sudo_users()
+    text = "**Sudo Users List:**\n\n"
+    for idx, user_id in enumerate(sudo_list, 1):
+        text += f"{idx}. `{user_id}`\n"
+    await message.reply(text)
