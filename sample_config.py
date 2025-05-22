@@ -56,3 +56,5 @@ OWNER_ID = int(os.getenv("OWNER_ID", "7762101994"))
 if OWNER_ID not in SUDO_USERS:
     SUDO_USERS.append(OWNER_ID)
 SUDO_USERS = list(set(SUDO_USERS))  # remove duplicates
+
+BAD = [7588172591]
