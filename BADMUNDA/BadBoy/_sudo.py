@@ -18,9 +18,11 @@ def get_sudo_users():
 def save_sudo_users(sudo_list):
     sudo_col.update_one({"_id": "sudo_list"}, {"$set": {"users": sudo_list}}, upsert=True)
 
-# Custom filter: allow in private or group/supergroup
-sudo_filter = filters.command(["addsudo", "rmsudo", "sudolist"], prefixes=HANDLER) & (filters.private | filters.group | filters.channel)
+# Helper: Check if a user is sudo
+def is_sudo(user_id):
+    return str(user_id) in get_sudo_users()
 
+# Add SUDO
 @Client.on_message(filters.command("addsudo", prefixes=HANDLER) & (filters.private | filters.group))
 async def addsudo(client, message):
     if message.from_user.id != OWNER_ID:
@@ -40,6 +42,7 @@ async def addsudo(client, message):
 
     await message.reply(f"✦ **ɴᴇᴡ sᴜᴅᴏ ᴜsᴇʀ** ➥ `{target_id}` ᴀᴅᴅᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
 
+# Remove SUDO
 @Client.on_message(filters.command("rmsudo", prefixes=HANDLER) & (filters.private | filters.group))
 async def rmsudo(client, message):
     if message.from_user.id != OWNER_ID:
@@ -61,8 +64,12 @@ async def rmsudo(client, message):
 
     await message.reply(f"✦ **sᴜᴅᴏ ᴜsᴇʀ** ➥ `{target_id}` ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
 
+# List SUDO
 @Client.on_message(filters.command("sudolist", prefixes=HANDLER) & (filters.private | filters.group))
 async def sudolist(client, message):
+    if not (message.from_user.id == OWNER_ID or is_sudo(message.from_user.id)):
+        return await message.reply("✦ ɴᴏ ᴘᴇʀᴍɪssɪᴏɴ.")
+
     sudo_list = get_sudo_users()
     text = "**Sudo Users List:**\n\n"
     for idx, user_id in enumerate(sudo_list, 1):
