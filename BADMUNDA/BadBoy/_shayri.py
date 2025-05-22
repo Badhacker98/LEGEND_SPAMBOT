@@ -11,8 +11,7 @@ from ..core.clients import *
 
 Useru = False
 
-
-@Client.on_message(filters.user(sudos) & filters.command(["shayri"], prefixes=HANDLER))
+@Client.on_message(filters.command("shayri", prefixes=HANDLER) & filters.user(sudos))
 async def shayri(Badmunda: Client, e: Message):
     usage = f"Command: {HANDLER}shayri -u \nCommand:{HANDLER}shayri -u (reply to anyone)\nCommand: {HANDLER}shayri (count) \nCommand: {HANDLER}shayri (count) (reply to anyone)"
     text = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
