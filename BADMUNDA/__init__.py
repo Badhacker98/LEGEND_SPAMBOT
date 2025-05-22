@@ -17,13 +17,13 @@ start_time = time.time()
 
 SUDOERS = filters.user()
 
-mongo = MongoClient(config.MONGO_URL)
+mongo = MongoClient(MONGO_URL)
 mongodb = mongo.BAD
 
 def sudo():
     global SUDOERS
-    OWNER = config.OWNER_ID
-    if config.MONGO_URL is None:
+    OWNER = OWNER_ID
+    if MONGO_URL is None:
         SUDOERS.add(OWNER)
     else:
         sudoersdb = mongodb.sudoers
