@@ -2,7 +2,7 @@ import glob
 import os
 import time
 
-from .Config import *
+from BADMUNDA.Config import SUDOERS, OWNER_ID, MONGO_URL
 from .core import *
 
 from pyrogram import filters
