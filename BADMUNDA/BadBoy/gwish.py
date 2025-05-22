@@ -3,14 +3,14 @@ from pyrogram.types import *
 
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 from ..core.clients import *
 
 wish = False
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["gm", "gdmrng"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["gm", "gdmrng"], prefixes=HANDLER)
 )
 async def gdmrngcmd(Badmunda: Client, e: Message):
     usage = f"Command: {HANDLER}gm -u \nCommand:{HANDLER}gm -u (reply to anyone)\nCommand: {HANDLER}gm (count) \nCommand: {HANDLER}gm (count) (reply to anyone)"
@@ -70,7 +70,7 @@ async def gdmrngcmd(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["ga", "gdafternoon"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["ga", "gdafternoon"], prefixes=HANDLER)
 )
 async def gdaftrnooncmd(Badmunda: Client, e: Message):
     usage = f"Command: {HANDLER}ga -u \nCommand:{HANDLER}ga -u (reply to anyone)\nCommand: {HANDLER}ga (count) \nCommand: {HANDLER}ga (count) (reply to anyone)"
@@ -132,7 +132,7 @@ async def gdaftrnooncmd(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["gn", "gdnight"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["gn", "gdnight"], prefixes=HANDLER)
 )
 async def gdnightcmd(Badmunda: Client, e: Message):
     usage = f"Command: {HANDLER}gn -u \nCommand:{HANDLER}gn -u (reply to anyone)\nCommand: {HANDLER}gn (count) \nCommand: {HANDLER}gn (count) (reply to anyone)"
@@ -195,7 +195,7 @@ async def gdnightcmd(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["stopwish"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["stopwish"], prefixes=HANDLER)
 )
 async def stopwish(_, e: Message):
     global wish
