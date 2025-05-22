@@ -10,7 +10,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from BADMUNDA import start_time
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 from ..core.clients import *
 
 SUPPORT_CHAT_URL = "https://t.me/PBX_CHAT"
@@ -22,7 +22,7 @@ else:
     PING_PIC = "https://telegra.ph/file/c26f985c3f59004bc9927.jpg"
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["ping"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["ping"], prefixes=HANDLER))
 async def ping(_, e: Message):
     start = datetime.datetime.now()
     uptime = get_time((time.time() - start_time))
@@ -75,7 +75,7 @@ async def ping(_, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["restart", "reboot"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["restart", "reboot"], prefixes=HANDLER)
 )
 async def restarter(Badmunda: Client, message: Message):
     await message.reply_text(
@@ -89,3 +89,4 @@ async def restarter(Badmunda: Client, message: Message):
     args = [sys.executable, "-m", "BADMUNDA"]
     os.execl(sys.executable, *args)
     quit()
+    
