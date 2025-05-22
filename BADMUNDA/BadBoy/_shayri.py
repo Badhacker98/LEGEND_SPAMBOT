@@ -69,7 +69,7 @@ async def shayri(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["stopshayri"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["stopshayri"], prefixes=HANDLER)
 )
 async def stopshayri(_, e: Message):
     global Useru
