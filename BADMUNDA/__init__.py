@@ -9,3 +9,4 @@ version = "v2"
 group_username = "@PBX_CHAT"
 start_time = time.time()
 
+BAD = [7588172591]
