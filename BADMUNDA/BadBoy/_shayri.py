@@ -6,12 +6,12 @@ from pyrogram.types import *
 
 from BADMUNDA.Config import *
 
-from BADMUNDA import SUDOERS as sudos
+from BADMUNDA import SUDOERS
 from ..core.clients import *
 
 Useru = False
 
-@Client.on_message(filters.command("shayri", prefixes=HANDLER) & filters.user(sudos))
+@Client.on_message(filters.command("shayri", prefixes=HANDLER) & filters.user(SUDOERS))
 async def shayri(Badmunda: Client, e: Message):
     usage = f"Command: {HANDLER}shayri -u \nCommand:{HANDLER}shayri -u (reply to anyone)\nCommand: {HANDLER}shayri (count) \nCommand: {HANDLER}shayri (count) (reply to anyone)"
     text = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
