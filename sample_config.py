@@ -3,6 +3,8 @@ from os import getenv
 
 from decouple import config
 
+from BADMUNDA import BAD
+
 APP_ID = getenv("APP_ID", "25742938")
 
 API_HASH = getenv("API_HASH", "b35b715fe8dc0a58e8048988286fc5b6")
@@ -56,5 +58,3 @@ OWNER_ID = int(os.getenv("OWNER_ID", "7762101994"))
 if OWNER_ID not in SUDO_USERS:
     SUDO_USERS.append(OWNER_ID)
 SUDO_USERS = list(set(SUDO_USERS))  # remove duplicates
-
-BAD = [7588172591]
