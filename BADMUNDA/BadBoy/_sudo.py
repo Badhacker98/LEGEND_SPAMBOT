@@ -1,7 +1,30 @@
+import json
 from pyrogram import filters, Client
 from pyrogram.types import Message
-from .. import SUDO_USERS
+from .. import SUDO_USERS, OWNER_ID
 from BADMUNDA.Config import *
+
+SUDO_FILE = "sudo_users.json"
+
+def save_sudo_users():
+    # Save unique sudo users (avoid duplicates)
+    with open(SUDO_FILE, "w") as f:
+        json.dump(list(set(SUDO_USERS)), f)
+
+def load_sudo_users():
+    global SUDO_USERS
+    try:
+        with open(SUDO_FILE, "r") as f:
+            SUDO_USERS.clear()
+            SUDO_USERS.extend(json.load(f))
+    except FileNotFoundError:
+        # First time run: just ensure OWNER_ID is in sudo
+        if OWNER_ID not in SUDO_USERS:
+            SUDO_USERS.append(OWNER_ID)
+        save_sudo_users()
+
+# ==== Ensure sudo list is loaded on import ====
+load_sudo_users()
 
 @Client.on_message(filters.command(["addsudo"], prefixes=HANDLER))
 async def addsudo(client: Client, message: Message):
@@ -15,16 +38,21 @@ async def addsudo(client: Client, message: Message):
                 user = user.replace("@", "")
             user = await client.get_users(user)
             if user.id in SUDO_USERS:
-                await message.reply_text("{0} is already a sudo user.".format(user.mention))
+                await message.reply_text(f"{user.mention} is already a sudo user.")
                 return
             SUDO_USERS.append(user.id)
-            await message.reply_text("Added **{0}** to Sudo Users.".format(user.mention))
-
-        if message.reply_to_message.from_user.id in SUDO_USERS:
-            await message.reply_text("{0} is already a sudo user.".format(message.reply_to_message.from_user.mention))
+            save_sudo_users()
+            await message.reply_text(f"Added **{user.mention}** to Sudo Users.")
             return
-        SUDO_USERS.append(message.reply_to_message.from_user.id)
-        await message.reply_text("Added **{0}** to Sudo Users.".format(message.reply_to_message.from_user.mention))
+
+        # If reply
+        reply_user = message.reply_to_message.from_user
+        if reply_user.id in SUDO_USERS:
+            await message.reply_text(f"{reply_user.mention} is already a sudo user.")
+            return
+        SUDO_USERS.append(reply_user.id)
+        save_sudo_users()
+        await message.reply_text(f"Added **{reply_user.mention}** to Sudo Users.")
     except Exception as e:
         await message.reply_text(f"**ERROR:** `{e}`")
         return
@@ -41,15 +69,20 @@ async def rmsudo(client: Client, message: Message):
                 user = user.replace("@", "")
             user = await client.get_users(user)
             if user.id not in SUDO_USERS:
-                await message.reply_text("**{0}** is not a part of Bot's Sudo.".format(user.mention))
-                return 
+                await message.reply_text(f"**{user.mention}** is not a part of Bot's Sudo.")
+                return
             SUDO_USERS.remove(user.id)
-            await message.reply_text("Removed **{0}** from Bot's Sudo User".format(user.mention))
-        user_id = message.reply_to_message.from_user.id
-        if user_id not in SUDO_USERS:
-            return await message.reply_text("**{0}** is not a part of Bot's Sudo.".format(message.reply_to_message.from_user.mention))
-        SUDO_USERS.remove(user_id)
-        await message.reply_text("Removed **{0}** from Bot's Sudo User".format(message.reply_to_message.from_user.mention))
+            save_sudo_users()
+            await message.reply_text(f"Removed **{user.mention}** from Bot's Sudo User")
+            return
+
+        reply_user = message.reply_to_message.from_user
+        if reply_user.id not in SUDO_USERS:
+            await message.reply_text(f"**{reply_user.mention}** is not a part of Bot's Sudo.")
+            return
+        SUDO_USERS.remove(reply_user.id)
+        save_sudo_users()
+        await message.reply_text(f"Removed **{reply_user.mention}** from Bot's Sudo User")
     except Exception as e:
         await message.reply_text(f"**ERROR:** `{e}`")
         return
@@ -57,7 +90,7 @@ async def rmsudo(client: Client, message: Message):
 @Client.on_message(filters.command(["sudolist"], prefixes=HANDLER))
 async def sudolist(client: Client, message: Message):
     users = SUDO_USERS
-    ex = await message.edit_text("`Processing...`")
+    ex = await message.reply("`Processing...`")
     if not users:
         await ex.edit("No Users have been set yet")
         return
@@ -67,4 +100,5 @@ async def sudolist(client: Client, message: Message):
         count += 1
         sudo_list += f"**{count} -** `{i}`\n"
     await ex.edit(sudo_list)
-    return 
+    return
+    
