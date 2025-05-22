@@ -9,8 +9,7 @@ APP_ID = getenv("APP_ID", "25742938")
 
 API_HASH = getenv("API_HASH", "b35b715fe8dc0a58e8048988286fc5b6")
 
-HEROKU_APP_NAME = config("HEROKU_APP_NAME", None)
-HEROKU_API_KEY = config("HEROKU_API_KEY", None)
+MONGO_DB = "mongodb+srv://BADMUNDA:BADMYDAD@badhacker.i5nw9na.mongodb.net/"
 
 BOT_TOKEN = config("BOT_TOKEN", default=None)
 BOT_TOKEN2 = config("BOT_TOKEN2", default=None)
