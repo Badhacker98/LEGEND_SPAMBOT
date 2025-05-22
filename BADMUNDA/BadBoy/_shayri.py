@@ -6,7 +6,7 @@ from pyrogram.types import *
 
 from BADMUNDA.Config import *
 
-from BADMUNDA.Config import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS as sudos
 from ..core.clients import *
 
 Useru = False
