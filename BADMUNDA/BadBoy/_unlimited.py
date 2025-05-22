@@ -8,13 +8,13 @@ from pyrogram.types import Message
 
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 from ..core.clients import *
 
 unlimited = False
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["uspam"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["uspam"], prefixes=HANDLER))
 async def uspam(Badmunda: Client, e: Message):
     global unlimited
     unlimited = True
@@ -45,7 +45,7 @@ async def uspam(Badmunda: Client, e: Message):
             print(a)
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["uraid"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["uraid"], prefixes=HANDLER))
 async def uraid(Badmunda: Client, e: Message):
     global unlimited
     unlimited = True
@@ -79,7 +79,7 @@ async def uraid(Badmunda: Client, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["abuse", "gali"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["abuse", "gali"], prefixes=HANDLER)
 )
 async def abuse(Badmunda: Client, e: Message):
     global unlimited
@@ -109,7 +109,7 @@ async def abuse(Badmunda: Client, e: Message):
             print(a)
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["stop"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["stop"], prefixes=HANDLER))
 async def stop(_, e: Message):
     global unlimited
     unlimited = False
@@ -117,7 +117,7 @@ async def stop(_, e: Message):
 
 
 @Client.on_message(
-    filters.user(sudos) & filters.command(["echo", "repeat"], prefixes=HANDLER)
+    filters.user(SUDOERS) & filters.command(["echo", "repeat"], prefixes=HANDLER)
 )
 async def echo_(Badmunda: Client, message: Message):
     txt = " ".join(message.command[1:])
