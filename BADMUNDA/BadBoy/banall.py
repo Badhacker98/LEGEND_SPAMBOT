@@ -4,12 +4,13 @@ from pyrogram.types import Message
 
 from BADMUNDA.Config import *
 
-from .. import SUDO_USERS as sudos
+from BADMUNDA import SUDOERS
 
 
-@Client.on_message(filters.user(sudos) & filters.command(["banall"], prefixes=HANDLER))
+@Client.on_message(filters.user(SUDOERS) & filters.command(["banall"], prefixes=HANDLER))
 async def banall(Badmunda: Client, message: Message):
     if message.chat.id == message.from_user.id:
         await message.reply_text("Use this cmd in group;")
         return
     await start_banall(Badmunda, message)
+    
