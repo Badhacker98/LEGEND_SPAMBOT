@@ -1,4 +1,4 @@
-[![ʙᴀᴅᴍᴜɴᴅᴀsᴘᴀᴍʙᴏᴛ](https://telegra.ph/file/c26f985c3f59004bc9927.jpg)](https://github.com/Badhacker98/LEGEND_SPAMBOT)
+[![ʙᴀᴅᴍᴜɴᴅᴀsᴘᴀᴍʙᴏᴛ](https://telegra.ph/file/c26f985c3f59004bc9927.jpg)](https://github.com/Pbx-Official/PBX_SPAMBOT)
 
 <h1 align="center">
 <b> 『ʙᴀᴅ ʙᴏᴛ sᴘᴀᴍ』 </b>
@@ -68,7 +68,7 @@ Required Variable | Description
 -------
 ## Deploy On Heroku
 
-- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Badhacker98/LEGEND_SPAMBOT)
+- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Pbx-Official/PBX_SPAMBOT)
 
 -------
 
@@ -94,7 +94,7 @@ pkg install python3 && pkg install git
 <b>3) clone repo and open dictionary </b>
 
 ```python
-git clone https://github.com/Badhacker98/LEGEND_SPAMBOT  && cd LEGEND_SPAMBOT   
+git clone https://github.com/Pbx-Official/PBX_SPAMBOT  && cd PBX_SPAMBOT
 ```
 
 <b>4) Install requirements </b>
